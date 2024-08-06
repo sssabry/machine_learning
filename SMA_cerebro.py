@@ -4,9 +4,11 @@ import datetime
 
 class moving_avg_crossover(bt.SignalStrategy):
     def __init__(self):
+        # Create the moving avgs
         self.short_ma = bt.indicators.SimpleMovingAverage(self.data.close, period=50)
         self.long_ma = bt.indicators.SimpleMovingAverage(self.data.close, period=200)
         
+        # add signals for if either crosses over the other
         self.signal_add(bt.SIGNAL_LONG, self.data.close > self.short_ma)
         self.signal_add(bt.SIGNAL_SHORT, self.data.close < self.long_ma)
 
