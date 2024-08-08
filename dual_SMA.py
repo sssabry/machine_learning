@@ -1,7 +1,9 @@
 """
-    - *Moving avg crossover* - when price moves from one side of the running avg to another (crosses over) it represents a change in momentum/trend, this is the point where we decide to enter or exit the market
-    ** most basic 'hello world' type of quant strat **
+- *Dual moving avg crossover* - when short term avg crosses a long term avg, signal is used to identify that the trend is shifting towards the short term avg 
+    - buy signal generated when short term avg > long term avg 
+    - sell signal when short term < longterm avg
 """
+
 import pandas as pd
 import quandl 
 import numpy as np
@@ -19,9 +21,7 @@ signals['short_mavg'] = aapl['Close'].rolling(window=short, min_periods=1, cente
 signals['long_mavg'] = aapl['Close'].rolling(window=long, min_periods=1, center=False).mean()
 
 # overwrite 'signal' with 1 if condition is true (short has crossed over)
-signals['signal'][short:] = np.where(signals['short_mavg'][short:] > signals['long_mavg'][short:], 
-                                     1.0,
-                                     0.0)
+signals['signal'][short:] = np.where(signals['short_mavg'][short:] > signals['long_mavg'][short:], 1.0, 0.0)
 
 # generate trading orders by taking the difference
 signals['positions'] = signals['signal'].diff()
