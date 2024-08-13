@@ -48,10 +48,3 @@ _Bollinger bands strategy: (BB)_
 
 
 ## Notes
-- Pitfalls of backtesting:
-    - external events can impact strat performance
-    - liquidity constraints (eg: bans on short sales)
-    - overfitting strat to past data
-    - avoid using future info against past data
-    - dont make arbitrary adjustments to make it perfect
-- 
