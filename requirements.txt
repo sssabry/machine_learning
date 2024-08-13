@@ -1,3 +1,6 @@
-backtrader 
-yfinance
-quandl
+backtrader==1.9.78.123
+yfinance==0.2.13
+pandas==2.0.3
+numpy==1.25.0
+scikit-learn==1.2.2
+matplotlib==3.8.1
